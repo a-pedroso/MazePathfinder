@@ -1,0 +1,21 @@
+@MazePathfinderApi_HostAddress = https://localhost:7116
+
+GET {{MazePathfinderApi_HostAddress}}/mazes/
+Accept: application/json
+
+###
+# @name submitMaze
+POST {{MazePathfinderApi_HostAddress}}/mazes/
+Content-Type: application/json
+
+{
+  "map": "S_________\n_XXXXXXXX_\n_X______X_\n_X_XXXX_X_\n_X_X__X_X_\n_X_X__X_X_\n_X_X____X_\n_X_XXXXXX_\n_X________\nXXXXXXXXG_",
+  "algorithm": 1
+}
+
+###
+@mazeid = {{submitMaze.response.body.$.Id}}
+
+GET {{MazePathfinderApi_HostAddress}}/mazes/{mazeid}
+
+###
